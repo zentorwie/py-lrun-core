@@ -15,13 +15,8 @@ running_argument = "lrun --max-cpu-time {cpu_time} --max-real-time {real_time} "
 user_output_file = "user.out"
 
 
-def Judge(input_file, std_output_file, user_output_file, spj = False):
-    if spj:
-        pass
-    else:
-        result = differ.judge_same(std_output_file, user_output_file)
-        return result
-
+def SpecialJudge(input_file, std_output_file, user_output_file):
+    return "AC"
 
 def Run(language_token, source_file, cpu_time, real_time, memory, data_dir, test_case, work_dir):
     work_dir = path.abspath(work_dir)
@@ -58,9 +53,12 @@ def Run(language_token, source_file, cpu_time, real_time, memory, data_dir, test
        or result["TERMSIG"] != "0" or lrun_error:
         return "RE"
 
-    if Judge(work_dir + "/" + test_case + ".in",\
-            work_dir + "/" + test_case + ".out",\
-            work_dir + "/" + user_output_file):
+    absolute, approximate = differ.judge_same(work_dir + "/" + test_case + ".out",\
+                                    work_dir + "/" + user_output_file)
+
+    if absolute:
         return "AC\n" + str(result)
+    if approximate:
+        return "PE"
     else:
         return "WA"
