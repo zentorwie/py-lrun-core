@@ -58,7 +58,9 @@ def Run(language_token, source_file, cpu_time, real_time, memory, data_dir, test
        or result["TERMSIG"] != "0" or lrun_error:
         return "RE"
 
-    if Judge(test_case + ".in", test_case + ".out", user_output_file):
+    if Judge(work_dir + "/" + test_case + ".in",\
+            work_dir + "/" + test_case + ".out",\
+            work_dir + "/" + user_output_file):
         return "AC\n" + str(result)
     else:
         return "WA"

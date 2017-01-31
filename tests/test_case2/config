@@ -1,0 +1,4 @@
+gnu-gcc main 1000 32 data WA
+gnu-g++ main 1000 32 data WA
+gnu-g++11 main 1000 32 data WA
+java Main 3000 32 data AC
