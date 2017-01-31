@@ -5,6 +5,7 @@ from os import path
 import commands
 import util
 import lrun
+import differ
 
 
 running_argument = "lrun --max-cpu-time {cpu_time} --max-real-time {real_time} " \
@@ -18,8 +19,8 @@ def Judge(input_file, std_output_file, user_output_file, spj = False):
     if spj:
         pass
     else:
-        pass
-    return True
+        result = differ.judge_same(std_output_file, user_output_file)
+        return result
 
 
 def Run(language_token, source_file, cpu_time, real_time, memory, data_dir, test_case, work_dir):
