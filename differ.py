@@ -6,7 +6,7 @@ def judge_same(path_a, path_b):
     path_b: pathname of file B
     return two variables
     absolute: if two files are absolutely the same
-    approximate: if two files are proximately the same
+    approximate: if two files are approximately the same
     '''
     fa = open(path_a, 'r')
     fb = open(path_b, 'r')
